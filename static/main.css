@@ -61,3 +61,11 @@ textarea {
     font-size: 16pt;
     padding: 16px;
 }
+
+#ready {
+    margin-top: 8px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 0;
+}

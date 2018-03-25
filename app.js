@@ -8,10 +8,10 @@ app.set("port", process.env.PORT);
 app.use(express.static("static/"));
 
 io.on("connection", socket => {
-    socket.on("new sentence", sentence => {
-        console.log(sentence);
-        translate(sentence).then(res => {
-            socket.emit("sentence processed", res);
+    socket.on("new paragraph", paragraph => {
+        console.log(paragraph);
+        translate(paragraph).then(res => {
+            socket.emit("paragraph processed", res);
             console.log(res);
         });
     });
