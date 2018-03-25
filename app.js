@@ -17,4 +17,6 @@ io.on("connection", socket => {
     });
 });
 
-http.listen(app.get("port"), () => console.log("Listening..."));
+http.listen(process.env.PORT || 3000, function () {
+  console.log('Server listening at port %d 3000');
+});
