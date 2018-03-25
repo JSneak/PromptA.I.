@@ -29,9 +29,11 @@ else {
     console.log('end: ' + Date.now());
     recognizing = false;
     if (ignore_onend) {
+      recognizing = false;
       return;
     }
     if (!final_transcript) {
+      recognizing = false;
       return;
     }
   };
