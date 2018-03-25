@@ -12,18 +12,19 @@ if (!('webkitSpeechRecognition' in window)) {
   };
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
-      ignore_onend = false;
+      ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
       ignore_onend = false;
     }
   };
   recognition.onend = function() {
-    recognizing = false;
     if (ignore_onend) {
+      recognizing = false;
       return;
     }
     if (!final_transcript) {
+      recognizing = false;
       return;
     }
   };
