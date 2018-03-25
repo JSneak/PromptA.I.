@@ -39,7 +39,7 @@ $(() => {
             $("#sentence").html(currSentence.text.content);
             $("body").attr("emotion", currSentence.sentiment.score > 0 ? "pos" : "neg");
             console.log((lengthOfString[pos]/3.33) * 1000)
-            setTimeout(timeout,(lengthOfString[pos]/3.33) * 1000, pos)
+            setTimeout(timeout,(lengthOfString[pos]/2.4166667) * 1000, pos)
           }else{
             $("#main").hide();
             // show and set to flex
@@ -49,19 +49,6 @@ $(() => {
         }
 
         timer = setTimeout(timeout, (lengthOfString[position]/3.33) * 1000, position)
-        // timer = setInterval(() => {
-        //     startButton();
-        //     if(++index > sentences.length) { //Ask victor if this increments index
-        //         clearInterval(timer);
-        //         $("#main").hide();
-        //         // show and set to flex
-        //         $("#done").show().css("display", "flex");
-        //         return;
-        //     }
-        //     const currSentence = sentences[index];
-        //     $("#sentence").html(currSentence.text.content);
-        //     $("body").attr("emotion", currSentence.sentiment.score > 0 ? "pos" : "neg");
-        // }, (lengthOfString[i]/3.33) * 1000);
     });
     $("#toggle").on("click", () => {
         $("#nav").toggleClass("hidden");
