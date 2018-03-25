@@ -26,6 +26,7 @@ $(() => {
         // initial render
         $("#sentence").html(sentences[0].text.content);
         $("body").attr("emotion", sentences[0].sentiment.score > 0 ? "pos" : "neg");
+        startRecording();
         // index 1+
         var position = 0;
         function timeout(pos) {
@@ -68,7 +69,7 @@ $(() => {
     $("#ready").on("click", e => {
         if($("#input").val().trim().length === 0) {
             e.preventDefault();
-            alert("can't be empty")
+            alert("You need to enter a speech!");
             return;
         }
         socket.emit("new paragraph", $("#input").val());

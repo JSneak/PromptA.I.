@@ -41,16 +41,17 @@ function speechRec() {
       final_transcript = capitalize(final_transcript);
       console.log(final_transcript);
       console.log(interim_transcript);
-      
+
     };
   }
 }
 var first_char = /\S/;
+
 function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
 }
 
-function startButton() {
+function startRecording() {
   if (recognizing) {
     recognition.stop();
     recognizing = true;

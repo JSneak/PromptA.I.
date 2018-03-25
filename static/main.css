@@ -28,6 +28,7 @@ body[emotion="neg"] {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    max-width: 80%;
 }
 
 #toggle {
@@ -48,7 +49,6 @@ body[emotion="neg"] {
 
 #sentence {
     font-size: 48pt;
-    max-width: 80%;
     text-align: center;
 }
 
@@ -60,9 +60,11 @@ body[emotion="neg"] {
     flex-direction: column;
     background: white;
     position: absolute;
-    width: 80%;
-    height: 100vh;
+    width: 50%;
+    height: 80%;
     padding: 16px 32px;
+    align-self: center;
+    border-radius: 8px;
 }
 
 .hidden {
@@ -88,6 +90,9 @@ textarea {
     padding: 8px;
     border-radius: 8px;
     border: 0;
+    background: #eb3349;
+    font-size: 16pt;
+    color: white;
 }
 
 h1 {
@@ -102,4 +107,22 @@ h1 {
     justify-content: center;
     width: 100%;
     height: 100vh;
+}
+
+.speed {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 0;
+    transition: 0.25s width ease-in;
+}
+
+#tooslow {
+    left: 0;
+}
+
+#toofast {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
+    right: 0;
 }
