@@ -1,24 +1,32 @@
 var final_transcript = '';
 var recognizing = false;
 var ignore_onend;
+var startTime;
+var endTime;
+
 if (!('webkitSpeechRecognition' in window)) {
-  upgrade();
-} else {
+  // upgrade();
+}
+else {
   var recognition = new webkitSpeechRecognition();
-  recognition.continuous = false;
+  recognition.continuous = true;
   recognition.interimResults = true;
   recognition.onstart = function() {
     recognizing = true;
+    startTime = Date.now();
+    console.log('start: ' + Date.now());
   };
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
-      ignore_onend = false;
+      // ignore_onend = false;
     }
     if (event.error == 'audio-capture') {
-      ignore_onend = false;
+      // ignore_onend = false;
     }
   };
   recognition.onend = function() {
+    endTime = Date.now();
+    console.log('end: ' + Date.now());
     recognizing = false;
     if (ignore_onend) {
       return;
@@ -32,7 +40,8 @@ if (!('webkitSpeechRecognition' in window)) {
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
-      } else {
+      }
+      else {
         interim_transcript += event.results[i][0].transcript;
       }
     }
@@ -42,11 +51,12 @@ if (!('webkitSpeechRecognition' in window)) {
   };
 }
 var first_char = /\S/;
+
 function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
 }
 
-function startButton() {
+function startRecording() {
   if (recognizing) {
     recognition.stop();
     return;

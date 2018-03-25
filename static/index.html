@@ -8,13 +8,17 @@
     </head>
     <body emotion="pos">
         <div id="form">
-            <h1>Hey! Let's get you set up.</h1>
+            <h1>Hi! Let's get you set up.</h1>
             <textarea id="input" placeholder="Enter your speech here..."></textarea>
             <input type="number" id="duration" placeholder="In which amount of time should you finish it in?" value="30">
             <button id="ready">Set stuff up</button>
         </div>
         <div id="main">
             <span id="sentence"></span>
+        </div>
+        <div>
+            <div id="tooslow" class="speed"></div>
+            <div id="toofast" class="speed"></div>
         </div>
         <div id="done">
             <h1>Fin.</h1>
@@ -30,7 +34,7 @@
             crossorigin="anonymous"
         ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-        <script src="main.js"></script>
         <script src="speedCheck.js"></script>
+        <script src="main.js"></script>
     </body>
 </html>

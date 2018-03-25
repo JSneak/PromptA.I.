@@ -19,6 +19,7 @@ $(() => {
         // initial render
         $("#sentence").html(sentences[0].text.content);
         $("body").attr("emotion", sentences[0].sentiment.score > 0 ? "pos" : "neg");
+        startRecording();
         // index 1+
         timer = setInterval(() => {
             if(++index > sentences.length) {
@@ -31,6 +32,7 @@ $(() => {
             const currSentence = sentences[index];
             $("#sentence").html(currSentence.text.content);
             $("body").attr("emotion", currSentence.sentiment.score > 0 ? "pos" : "neg");
+            // todo: add neutral zone
         }, allowedTime * 1000);
     });
     $("#toggle").on("click", () => {
@@ -39,7 +41,7 @@ $(() => {
     $("#ready").on("click", e => {
         if($("#input").val().trim().length === 0) {
             e.preventDefault();
-            alert("can't be empty")
+            alert("You need to enter a speech!");
             return;
         }
         socket.emit("new paragraph", $("#input").val());
