@@ -7,14 +7,17 @@
         <link rel="stylesheet" href="main.css" />
     </head>
     <body emotion="pos">
-        <div id="main">
-            <span id="sentence">This is a test</span>
-            <button id="toggle"></button>
-        </div>
-        <div id="nav">
-            <textarea id="input" placeholder="Speech here..."></textarea>
-            <input type="number" id="duration" placeholder="How many seconds long?">
+        <div id="form">
+            <h1>Hey! Let's get you set up.</h1>
+            <textarea id="input" placeholder="Enter your speech here..."></textarea>
+            <input type="number" id="duration" placeholder="In which amount of time should you finish it in?" value="30">
             <button id="ready">Set stuff up</button>
+        </div>
+        <div id="main">
+            <span id="sentence"></span>
+        </div>
+        <div id="done">
+            <h1>Fin.</h1>
         </div>
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -27,7 +30,6 @@
             crossorigin="anonymous"
         ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
         <script src="main.js"></script>
     </body>
 </html>

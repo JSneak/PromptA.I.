@@ -2,10 +2,15 @@
     box-sizing: border-box;
 }
 
-body, textarea {
+body, input, textarea, h1 {
     font-family: Nunito, sans-serif;
     font-size: 12pt;
-    transition: 0.125s all ease-in;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    transition: 0.25s background ease-in;
 }
 
 body[emotion="pos"] {
@@ -23,7 +28,6 @@ body[emotion="neg"] {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    position: relative;
 }
 
 #toggle {
@@ -48,7 +52,16 @@ body[emotion="neg"] {
     text-align: center;
 }
 
-#nav {
+#form {
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    width: 80%;
+    height: 100vh;
     padding: 16px 32px;
 }
 
@@ -57,10 +70,12 @@ body[emotion="neg"] {
 }
 
 input, textarea {
+    border: 1px solid #d3d3d3;
     border-radius: 8px;
     width: 100%;
     font-size: 16pt;
     padding: 16px;
+    margin: 4px 0;
 }
 
 textarea {
@@ -73,4 +88,18 @@ textarea {
     padding: 8px;
     border-radius: 8px;
     border: 0;
+}
+
+h1 {
+    font-size: 28pt;
+    margin-bottom: 16px;
+}
+
+#done {
+    background: rgba(0, 0, 0, 0.25);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
 }

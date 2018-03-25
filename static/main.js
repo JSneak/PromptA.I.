@@ -8,10 +8,6 @@ const perSentenceTime = (time, sentences) => {
 };
 
 $(() => {
-    // check for cookie. if nonexistent, prompt for input
-    if(!Cookies.get("hasInput")) {
-        $("#main").hide();
-    }
     const emotion = $("body").attr("emotion") === "pos";
     $("body").attr("emotion", emotion ? "neg" : "pos");
     socket.on("paragraph processed", res => {
@@ -21,13 +17,19 @@ $(() => {
         console.log(allowedTime);
         // initial render
         $("#sentence").html(sentences[0].text.content);
+        $("body").attr("emotion", sentences[0].sentiment.score > 0 ? "pos" : "neg");
         // index 1+
         timer = setInterval(() => {
-            $("#sentence").html(sentences[index].text.content);
-            index++;
-            if(index >= sentences.length) {
+            if(++index > sentences.length) {
                 clearInterval(timer);
+                $("#main").hide();
+                // show and set to flex
+                $("#done").show().css("display", "flex");
+                return;
             }
+            const currSentence = sentences[index];
+            $("#sentence").html(currSentence.text.content);
+            $("body").attr("emotion", currSentence.sentiment.score > 0 ? "pos" : "neg");
         }, allowedTime * 1000);
     });
     $("#toggle").on("click", () => {
@@ -39,9 +41,7 @@ $(() => {
             alert("can't be empty")
             return;
         }
-        Cookies.set("hasInput", true);
-        Cookies.set("paragraph", $("#input").val());
-        socket.emit("new paragraph", decodeURI(Cookies.get("paragraph")));
-        $("#main").show();
+        socket.emit("new paragraph", $("#input").val());
+        $("#form").hide();
     });
 });
