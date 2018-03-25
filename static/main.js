@@ -12,7 +12,14 @@ $(() => {
     const emotion = $("body").attr("emotion") === "pos";
     $("body").attr("emotion", emotion ? "neg" : "pos");
     socket.on("paragraph processed", res => {
+
         sentences = res.sentences;
+        let lengthOfString = [];
+        for(let i = 0; i < sentences.length; i++) {
+          lengthOfString.push(sentences[i].text.content.split(' ').length);
+          //["0"].text.content
+        }
+        console.log(lengthOfString)
         console.log(sentences);
         let allowedTime = perSentenceTime(parseInt($("#duration").val()), sentences);
         console.log(allowedTime);
@@ -20,18 +27,40 @@ $(() => {
         $("#sentence").html(sentences[0].text.content);
         $("body").attr("emotion", sentences[0].sentiment.score > 0 ? "pos" : "neg");
         // index 1+
-        timer = setInterval(() => {
-            if(++index > sentences.length) {
-                clearInterval(timer);
-                $("#main").hide();
-                // show and set to flex
-                $("#done").show().css("display", "flex");
-                return;
-            }
-            const currSentence = sentences[index];
+        var position = 0;
+        function timeout(pos) {
+          console.log(pos)
+          if(pos < sentences.length -1) {
+            pos++
+            console.log(pos)
+            console.log("gets here")
+            const currSentence = sentences[pos];
             $("#sentence").html(currSentence.text.content);
             $("body").attr("emotion", currSentence.sentiment.score > 0 ? "pos" : "neg");
-        }, allowedTime * 1000);
+            console.log((lengthOfString[pos]/3.33) * 1000)
+            setTimeout(timeout,(lengthOfString[pos]/3.33) * 1000, pos)
+          }else{
+            $("#main").hide();
+            // show and set to flex
+            $("#done").show().css("display", "flex");
+            return;
+          }
+        }
+
+        timer = setTimeout(timeout, (lengthOfString[position]/3.33) * 1000, position)
+        // timer = setInterval(() => {
+        //     startButton();
+        //     if(++index > sentences.length) { //Ask victor if this increments index
+        //         clearInterval(timer);
+        //         $("#main").hide();
+        //         // show and set to flex
+        //         $("#done").show().css("display", "flex");
+        //         return;
+        //     }
+        //     const currSentence = sentences[index];
+        //     $("#sentence").html(currSentence.text.content);
+        //     $("body").attr("emotion", currSentence.sentiment.score > 0 ? "pos" : "neg");
+        // }, (lengthOfString[i]/3.33) * 1000);
     });
     $("#toggle").on("click", () => {
         $("#nav").toggleClass("hidden");
