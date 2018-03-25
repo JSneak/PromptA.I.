@@ -1,7 +1,6 @@
 var final_transcript = '';
 var recognizing = false;
 var ignore_onend;
-function speechRec() {
   if (!('webkitSpeechRecognition' in window)) {
     upgrade();
   } else {
@@ -44,7 +43,6 @@ function speechRec() {
 
     };
   }
-}
 var first_char = /\S/;
 
 function capitalize(s) {
