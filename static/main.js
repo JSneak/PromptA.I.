@@ -8,6 +8,7 @@ const perSentenceTime = (time, sentences) => {
 };
 
 $(() => {
+    $("#form").hide().fadeIn();
     const emotion = $("body").attr("emotion") === "pos";
     $("body").attr("emotion", emotion ? "neg" : "pos");
     socket.on("paragraph processed", res => {
@@ -42,6 +43,6 @@ $(() => {
             return;
         }
         socket.emit("new paragraph", $("#input").val());
-        $("#form").hide();
+        $("#form").fadeOut();
     });
 });
