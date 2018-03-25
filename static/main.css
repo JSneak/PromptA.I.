@@ -1,0 +1,63 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body, textarea {
+    font-family: Nunito, sans-serif;
+    font-size: 12pt;
+    transition: 0.125s all ease-in;
+}
+
+body[emotion="pos"] {
+    background: linear-gradient(to right, #11998e, #38ef7d);
+    color: white;
+}
+
+body[emotion="neg"] {
+    background: linear-gradient(to right, #eb3349, #f45c43);
+    color: white;
+}
+
+#main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+
+#toggle {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.25);
+    height: 4px;
+    width: 32px;
+    border: 0;
+    bottom: 0;
+    right: 8px;
+    position: absolute;
+    transition: 0.125s height ease-in;
+}
+
+#toggle:hover {
+    height: 8px;
+}
+
+#sentence {
+    font-size: 48pt;
+}
+
+#nav {
+    padding: 16px 32px;
+}
+
+.hidden {
+    display: none;
+}
+
+textarea {
+    border-radius: 8px;
+    height: 128px;
+    width: 100%;
+    font-size: 16pt;
+    padding: 16px;
+}
