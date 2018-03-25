@@ -21,8 +21,6 @@ $(() => {
         }
         console.log(lengthOfString)
         console.log(sentences);
-        let allowedTime = perSentenceTime(parseInt($("#duration").val()), sentences);
-        console.log(allowedTime);
         // initial render
         $("#sentence").html(sentences[0].text.content);
         $("body").attr("emotion", sentences[0].sentiment.score > 0 ? "pos" : "neg");
