@@ -44,6 +44,8 @@ body[emotion="neg"] {
 
 #sentence {
     font-size: 48pt;
+    max-width: 80%;
+    text-align: center;
 }
 
 #nav {
@@ -54,12 +56,15 @@ body[emotion="neg"] {
     display: none;
 }
 
-textarea {
+input, textarea {
     border-radius: 8px;
-    height: 128px;
     width: 100%;
     font-size: 16pt;
     padding: 16px;
+}
+
+textarea {
+    height: 128px;
 }
 
 #ready {

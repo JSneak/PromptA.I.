@@ -1,6 +1,13 @@
+const socket = io();
+let sentences = [];
+let index = 0;
+let timer = null;
+
+const perSentenceTime = (time, sentences) => {
+    return time / sentences.length;
+};
+
 $(() => {
-    const socket = io();
-    let sentences = [];
     // check for cookie. if nonexistent, prompt for input
     if(!Cookies.get("hasInput")) {
         $("#main").hide();
@@ -10,6 +17,18 @@ $(() => {
     socket.on("paragraph processed", res => {
         sentences = res.sentences;
         console.log(sentences);
+        let allowedTime = perSentenceTime(parseInt($("#duration").val()), sentences);
+        console.log(allowedTime);
+        // initial render
+        $("#sentence").html(sentences[0].text.content);
+        // index 1+
+        timer = setInterval(() => {
+            $("#sentence").html(sentences[index].text.content);
+            index++;
+            if(index >= sentences.length) {
+                clearInterval(timer);
+            }
+        }, allowedTime * 1000);
     });
     $("#toggle").on("click", () => {
         $("#nav").toggleClass("hidden");
